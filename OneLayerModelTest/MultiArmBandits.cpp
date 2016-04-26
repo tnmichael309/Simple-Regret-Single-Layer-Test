@@ -1,10 +1,7 @@
 #include "MultiArmBandits.h"
 
 MultiArmBandits::MultiArmBandits(double* probs, int nArms){
-	/*//shuffle
-	for(int i = 0; i < nArms; i++){
-		int changeIndex = rand()%
-	}*/
+	
 	for(int i = 0; i < nArms; i++){
 		RandomNumberGenerator brg(probs[i]);
 		m_Arms.push_back(brg);

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "BernoulliRandomGenerator.h"
+#include "RandomGenerator.h"
 
 using namespace std;
 

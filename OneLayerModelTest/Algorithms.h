@@ -14,6 +14,8 @@ using namespace boost::math;
 
 #define isResetVariance 0
 #define isResetHalf 0
+#define USE_TRAP 0
+#define TRAP_INDEX 0
 
 class armInfo{
 public:
@@ -51,93 +53,6 @@ protected:
 
 private:
 	int m_nExp;
-	int m_TrapIndex;
-};
-
-class SequentialHalving:public Algorithms{
-public:
-
-	SequentialHalving(int expNum, int numBudget, double* probs, int nArms);
-	~SequentialHalving();
-
-	void reset();
-	int select() ;
-	void update(double result, int armNum);
-	int recommend();
-	void showLog();
-
-private:
-
-	int m_totalRounds;
-	int m_currentRounds;
-	int m_bugetForEachRound;
-	int m_selectNums;
-	int m_selectRange;
-};
-
-class StochasticModel:public Algorithms{
-public:
-	StochasticModel(int expNum, int numBudget, double* probs, int nArms);
-	~StochasticModel();
-
-	void reset();
-	int select() ;
-	void update(double result, int armNum);
-	int recommend();
-	void showLog();
-
-private:
-
-	////////
-	//student-t's helper functions
-	////////
-	double calculateStudentTPDF(double tValue, double degreeOfFreedom);
-	// separability
-	double calculateStudentTCDF(double tValue, double degreeOfFreedom);
-	// win rate
-	double calculateStudentTWinRate(double tValue, double degreeOfFreedom);
-	double calculateStudentTBestProbability(int iIndex, vector<double> &vMeans, vector<double> &vDeviations, vector<int> &vMoveCounts);
-
-	int m_lastBestMove;
-	int m_lastSelectedChild;
-};
-
-class UCBE:public Algorithms{
-public:
-
-	UCBE(int expNum, int numBudget, double* probs, int nArms, int param);
-	~UCBE();
-
-	void reset();
-	int select() ;
-	void update(double result, int armNum);
-	int recommend();
-	void showLog();
-
-private:
-
-	int m_Param;
-};
-
-class SuccessiveReject:public Algorithms{
-public:
-
-	SuccessiveReject(int expNum, int numBudget, double* probs, int nArms);
-	~SuccessiveReject();
-
-	void reset();
-	int select() ;
-	void update(double result, int armNum);
-	int recommend();
-	void showLog();
-
-private:
-	int m_bugetForEachRound;
-	int m_selectRange;
-	int m_selectNums;
-	int m_currentRound;
-
-	double avgLogK(int k);
 };
 
 #endif

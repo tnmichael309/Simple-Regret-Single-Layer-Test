@@ -1,7 +1,10 @@
 
-#include "BernoulliRandomGenerator.h"
+#include "RandomGenerator.h"
 #include "MultiArmBandits.h"
-#include "Algorithms.h"
+#include "Sequential Halving.h"
+#include "SIMuS.h"
+#include "Successive Reject.h"
+#include "UCB-E.h"
 
 void experiment();
 
