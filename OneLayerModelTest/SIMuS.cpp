@@ -70,7 +70,7 @@ int StochasticModel::select(){
 		degreeOfFreedom = degreeOfFreedom <= 1 ? 1 : degreeOfFreedom;
 
 
-		double dGradient = calculateStudentTPDF(dZValue,degreeOfFreedom)/calculateStudentTCDF(dZValue,degreeOfFreedom)/dSquareSumOfTwoDeviations*(-1*sqrt(dSquareSumOfTwoDeviations) - 1/sqrt(dSquareSumOfTwoDeviations)*(m_Arms[i].mean - m_Arms[i].meanOfMean)*dDifferenceOfWinRate/(vMoveCount[i]+1));
+		double dGradient = calculateStudentTPDF(dZValue,degreeOfFreedom)/calculateStudentTCDF(dZValue,degreeOfFreedom)/dSquareSumOfTwoDeviations*(-1*sqrt(dSquareSumOfTwoDeviations) - 1/sqrt(dSquareSumOfTwoDeviations)*(m_Arms[i].mean - m_Arms[i].meanOfMean)*dDifferenceOfWinRate/(vMoveCount[i]*(vMoveCount[i]+1)));
 
 		dGradient = sqrt(vVariance[i])*fabs(dGradient);
 
@@ -81,7 +81,7 @@ int StochasticModel::select(){
 		}
 
 
-		dGradientOfBestChild += calculateStudentTPDF(dZValue,degreeOfFreedom)/calculateStudentTCDF(dZValue,degreeOfFreedom)/dSquareSumOfTwoDeviations*(sqrt(dSquareSumOfTwoDeviations) - 1/sqrt(dSquareSumOfTwoDeviations)*(m_Arms[0].mean - m_Arms[0].meanOfMean)*dDifferenceOfWinRate/(vMoveCount[0]+1));
+		dGradientOfBestChild += calculateStudentTPDF(dZValue,degreeOfFreedom)/calculateStudentTCDF(dZValue,degreeOfFreedom)/dSquareSumOfTwoDeviations*(sqrt(dSquareSumOfTwoDeviations) - 1/sqrt(dSquareSumOfTwoDeviations)*(m_Arms[0].mean - m_Arms[0].meanOfMean)*dDifferenceOfWinRate/(vMoveCount[0]*(vMoveCount[0]+1)));
 	}
 
 	dGradientOfBestChild = sqrt(vVariance[0])*fabs(dGradientOfBestChild);
